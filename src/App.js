@@ -1,26 +1,134 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {render} from 'react-dom';
+import "./index.css";
+import Mars from "./mars";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+
+  state = {
+    commands: '',
+    commandsToExecute: '',
+    execute: '',
+    startPosition: '00N'
+  };
+
+  addCommand = e => {
+    this.setState(
+      {
+        commands: this.setState.commands + e.target.value
+      }
+    )
+  };
+
+  runSample = e => {
+    this.setState(
+      {
+        commands: e.target.value
+      }
+    );
+  };
+
+  execute = () => {
+    let startPosition = this.startInput.value;
+    if (/^[0-4][0-4][NEWS]$/.test(startPosition)) {
+      this.setState(
+        {
+          execute: true,
+          commandsToExecute: this.state.commands,
+          startPosition
+        }
+      );
+    } else {
+      alert('Invalid start position')
+    }
+  }
+
+  clear = () => {
+    this.setState(
+      {
+        commands: '',
+        execute: false,
+        commandsToExecute: ''
+      }
+    );
+  };
+
+  validateStartPosition = e => {
+    e.target.checkValidator();
+  };
+
+  stopExecute = () => {
+    this.setState(
+      {
+        execute: false
+      }
+    );
+  };
+
+  render() {
+    let position = this.state.startPosition || '00N';
+    position = position.split('').join(' ');
+
+    return (
+      <div className={'app'}>
+
+        <h1 className={'app-name'}>Mars Rover</h1>
+        <a className={'source'} href={''} title={'Source code for Mars Rover'}>Source</a>
+
+        <div className={`control-panel`}>
+
+          <div className='start-position'>
+            <label htmlFor="startPosition">Start Position (Eg; 00N):</label>
+            <input type="text" 
+                    id="startPosition" 
+                    maxLength={3} required
+                    pattern={'^[0-4][0-4][NEWS]$'}
+                    defaultValue={'00N'} 
+                    onBlur={this.validateStartPosition}
+                    ref={(elm) => {
+                      this.startInput = elm
+                    }}
+            />
+          </div>
+
+          <div className='commands'>
+            <button value='M' onClick={this.addCommand}>Move</button>
+            <button value='L' onClick={this.addCommand}>Left</button>
+            <button value='R' onClick={this.addCommand}>Right</button>
+          </div>
+          
+          <div className='execution'>
+            <button onClick={this.clear} className='secondary'>X</button>
+            <input type='text' readOnly value={this.state.commands} />
+            <button className={'cta'} onClick={this.execute}>Execute</button>
+          </div>
+
+          <div className='Sample'>
+            <label>Sample: </label>
+            <ul>
+              <li>
+                <button value={'MMRMMLMMRM'} onClick={this.runSample}>MMRMMLMMRM</button>
+              </li>
+              <li>
+                <button value={'RMMMLMRMLM'} onClick={this.runSample}>RMMMLMRMLM</button>
+              </li>
+            </ul>
+          </div>
+          
+          <Mars 
+            size={5}
+            position={position}
+            commands={this.state.commandsToExecute}
+            execute={this.state.execute}
+            onDone={this.stopExecute}
+          />
+
+        </div>
+
+      </div>
+    )
+  }  
 }
 
 export default App;
