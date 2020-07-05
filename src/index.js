@@ -108,6 +108,7 @@ class MarsRoverSimulator extends React.Component {
 
   executeNextMove() {
     if (this.hasMoreMoves()) {
+      // eslint-disable-next-line react/no-direct-mutation-state
       this.processMove(this.state.inputString[this.state.stepNumber++]);
     } else {
       clearInterval(this.state.intervalId);
@@ -116,7 +117,6 @@ class MarsRoverSimulator extends React.Component {
 
   processMove(move) {
     //console.log(`Processing move ${move}`)
-    const inputString = this.state.inputString;
     const history = this.state.history;
     const current = history[history.length - 1];
 
@@ -227,7 +227,7 @@ function mod_floor(a, n) {
 
 ReactDOM.render(
   <MarsRoverSimulator
-    dimensions={[6, 6]}
+    dimensions={[9, 9]}
     roverStartPosition={[0, 0]}
     obstacles={[[1, 2], [4, 3]]}
   />,
