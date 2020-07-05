@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Rover from './rover';
+import Rover from "./rover";
 
 const MOVE_VECTOR = {
     S: [0, -1],
@@ -42,7 +42,7 @@ class Mars extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.reset( () => {
+        this.reset(() => {
             this.process(nextProps);
         });
     }
