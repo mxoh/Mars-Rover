@@ -26,7 +26,8 @@ export class App extends React.Component {
 
     execute = () => {
         let startPosition = this.startInput.value;
-        if (/^[0-4][0-4][NEWS]$/.test(startPosition)) {
+        //if (/^[0-4][0-4][NEWS]$/.test(startPosition)) {
+        if (startPosition) {
             this.setState({
                 execute: true,
                 commandsToExecute: this.state.commands,
@@ -59,11 +60,13 @@ export class App extends React.Component {
     render() {
         let position = this.state.startPosition || '00N';
         position = position.split('').join(' ');
+
+        //<a className={'source'} href={'https://github.com/vraa/marsrover'} title={'Source code for Mars Rover'}>Source</a>
+
         return (
             <div className={'app'}>
                 <h1 className={'app-name'}>Mars Rover</h1>
-                <a className={'source'} href={'https://github.com/vraa/marsrover'}
-                   title={'Source code for Mars Rover'}>Source</a>
+                
                 <div className={`control-panel`}>
                     <div className={'start-position'}>
                         <label
