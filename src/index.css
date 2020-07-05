@@ -160,11 +160,11 @@ html {
 .mars {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-column-gap: 1px;
-    grid-row-gap: 1px;
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
     list-style: none;
-    max-width: 350px;
-    margin: 40px auto;
+    max-width: 150px;
+    margin: initial;
     padding: 0;
 }
 
@@ -188,7 +188,7 @@ html {
     left: 7px;
     color: #fff;
     opacity: .1;
-    font-size: .8rem;
+    font-size: .5rem;
 }
 
 .cell.path:before {
@@ -223,7 +223,7 @@ html {
 }
 
 .rover {
-    font-size: 3rem;
+    font-size: 2rem;
     transition: all .1s;
     color: #FAFAFA;
     z-index: 1;
@@ -251,13 +251,13 @@ html {
 
 @media (min-width: 510px) {
     .mars {
-        max-width: 510px;
-        width: 510px;
+        max-width: 200px;
+        width: 50px;
     }
 
     .cell {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 50px;
     }
 
     h1 {
