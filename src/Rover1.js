@@ -40,6 +40,7 @@ class Rover extends Component {
 
   executeNextMove() {
     if (this.checkForMove()) {
+      // eslint-disable-next-line react/no-direct-mutation-state
       this.move(this.state.inputString[this.state.stepNumber++]);
     } else {
       clearInterval(this.state.intervalId);
