@@ -22,7 +22,7 @@ const RIGHT_TURNS_MAP = {
     W: "N"
 };
 
-class Mars extends React.Component {
+class Mars extends Component {
     initialState = {
         start: null,
         end: null,
@@ -51,19 +51,18 @@ class Mars extends React.Component {
         this.setState(this.initialState, cb);
     };
 
-    process = props => {
+    process = (props) => {
         const {commands, position} = props;
-
         if (commands === '') {
             this.setState(this.initialState);
         } else {
-            const parts = position.split(' ');
+            const parts = position.split(" ");
             this.setState(
                 {
                     start: parts[0] + "-" + parts[1],
                     position: parts[0] + "-" + parts[1],
                     facing: parts[2]
-                }, 
+                },
                 () => {
                     if (props.execute) {
                         this.execute(commands);

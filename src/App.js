@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from 'react-dom';
+//import {render} from 'react-dom';
 import "./index.css";
 import Mars from "./mars";
 
@@ -69,12 +69,12 @@ class App extends React.Component {
   render() {
     let position = this.state.startPosition || '00N';
     position = position.split('').join(' ');
-
+//<a className={'source'} href={''} title={'Source code for Mars Rover'}>Source</a>
     return (
       <div className={'app'}>
 
         <h1 className={'app-name'}>Mars Rover</h1>
-        <a className={'source'} href={''} title={'Source code for Mars Rover'}>Source</a>
+        
 
         <div className={`control-panel`}>
 
