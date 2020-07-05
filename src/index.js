@@ -1,5 +1,5 @@
 import React from "react";
-//import {render} from "react-dom";
+import {render} from "react-dom";
 import "./index.css";
 import Mars from "./mars";
 
@@ -66,7 +66,7 @@ export class App extends React.Component {
         return (
             <div className={'app'}>
                 <h1 className={'app-name'}>Mars Rover</h1>
-                
+
                 <div className={`control-panel`}>
                     <div className={'start-position'}>
                         <label
@@ -78,7 +78,7 @@ export class App extends React.Component {
                                id="startPosition"
                                maxLength={3}
                                required
-                               pattern={'^[0-4][0-4][NEWS]$'}
+                               //pattern={'^[0-4][0-4][NEWS]$'}
                                defaultValue={'00N'}
                                onBlur={this.validateStartPosition}
                                ref={(elm) => {
@@ -124,4 +124,4 @@ export class App extends React.Component {
     }
 }
 
-//render(<App/>, document.getElementById("root"));
+render(<App/>, document.getElementById("root"));
