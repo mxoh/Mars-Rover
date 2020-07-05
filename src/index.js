@@ -61,9 +61,9 @@ class App extends React.Component {
         position = position.split('').join(' ');
         return (
             <div className={'app'}>
-                <h1 className={'app-name'}>Mars Rover in JavaScript / React</h1>
+                <h1 className={'app-name'}>Mars Rover</h1>
                 <a className={'source'} href={'https://github.com/vraa/marsrover'}
-                   title={'Source code for Mars Rover in JavaScript / React'}>Source</a>
+                   title={'Source code for Mars Rover'}>Source</a>
                 <div className={`control-panel`}>
                     <div className={'start-position'}>
                         <label
@@ -83,16 +83,19 @@ class App extends React.Component {
                                }}
                         />
                     </div>
+
                     <div className='commands'>
                         <button value='M' onClick={this.addCommand}>Move</button>
                         <button value='L' onClick={this.addCommand}>Left</button>
                         <button value='R' onClick={this.addCommand}>Right</button>
                     </div>
+
                     <div className='execution'>
                         <button onClick={this.clear} className='secondary'>✖</button>
-                        <input type="text" readOnly value={this.state.commands}/>
+                        <input type="text" value={this.state.commands}/>
                         <button className={'cta'} onClick={this.execute}>Execute</button>
                     </div>
+
                     <div className='samples'>
                         <label>Sample: </label>
                         <ul>
@@ -104,6 +107,7 @@ class App extends React.Component {
                             </li>
                         </ul>
                     </div>
+
                 </div>
                 <Mars
                     size={5}
