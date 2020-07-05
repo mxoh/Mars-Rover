@@ -51,7 +51,7 @@ class Mars extends Component {
         this.setState(this.initialState, cb);
     };
 
-    process = (props) => {
+    process = props => {
         const {commands, position} = props;
         if (commands === '') {
             this.setState(this.initialState);
@@ -72,13 +72,11 @@ class Mars extends Component {
         }
     };
 
-    execute = (commands) => {
+    execute = commands => {
         let ops = (commands || "").split("");
-        this.setState(
-            {ops}, () => {
-                setTimeout(this.run.bind(this), 500);
-            }
-        );
+        this.setState({ops}, () => {
+            setTimeout(this.run.bind(this), 500);
+        });
     };
 
     run = () => {
@@ -86,42 +84,36 @@ class Mars extends Component {
         let {position, path, facing} = this.state;
         path = path || {};
         path[position] = facing;
-
         let op = ops.shift();
         let newPosition = {};
-
-        if (op === 'L') {
+        if (op === "L") {
             newPosition = this.turnRoverLeft();
-        } else if (op === 'R') {
-            newPosition = this.turnRoverRigth();
-        } else if (op === 'M') {
+        } else if (op === "R") {
+            newPosition = this.turnRoverRight();
+        } else if (op === "M") {
             newPosition = this.moveRoverForward();
         } else {
-            console.log('====================================');
             console.log("Invalid command");
-            console.log('====================================');
         }
-
         if (newPosition.error) {
-            alert('Can not move beyond the boundaries of Mars')
+            alert('Can not move beyond the boundaries of Mars');
         }
-
         this.setState(Object.assign(this.state, {
             ops,
             path,
             ...newPosition
         }), () => {
             if (this.state.ops.length > 0 && !this.state.error) {
-                setTimeout(this.run.bind(this), 300)
+                setTimeout(this.run.bind(this), 300);
             } else {
-                this.setState(
-                    {
-                        end: this.state.position
-                    }
-                )
+                this.setState({
+                    end: this.state.position
+                })
             }
         })
+
     };
+
 
     moveRoverForward = () => {
         const {size} = this.props;
