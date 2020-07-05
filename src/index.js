@@ -26,8 +26,7 @@ export class App extends React.Component {
 
     execute = () => {
         let startPosition = this.startInput.value;
-        //if (/^[0-4][0-4][NEWS]$/.test(startPosition)) {
-        if (startPosition) {
+        if (/^[0-8][0-8][NEWS]$/.test(startPosition)) {
             this.setState({
                 execute: true,
                 commandsToExecute: this.state.commands,
@@ -68,6 +67,7 @@ export class App extends React.Component {
                 <h1 className={'app-name'}>Mars Rover</h1>
 
                 <div className={`control-panel`}>
+
                     <div className={'start-position'}>
                         <label
                             htmlFor="startPosition"
@@ -78,7 +78,7 @@ export class App extends React.Component {
                                id="startPosition"
                                maxLength={3}
                                required
-                               //pattern={'^[0-4][0-4][NEWS]$'}
+                               pattern={'^[0-8][0-8][NEWS]$'}
                                defaultValue={'00N'}
                                onBlur={this.validateStartPosition}
                                ref={(elm) => {
@@ -112,8 +112,9 @@ export class App extends React.Component {
                     </div>
 
                 </div>
+                
                 <Mars
-                    size={5}
+                    size={9}
                     position={position}
                     commands={this.state.commandsToExecute}
                     execute={this.state.execute}
