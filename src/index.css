@@ -164,7 +164,6 @@ html {
     grid-row-gap: 2px;
     list-style: none;
     max-width: 150px;
-    margin: initial;
     padding: 0;
 }
 
@@ -175,7 +174,7 @@ html {
     justify-items: center;
     background-color: #263238;
     transition: background .2s;
-    min-height: 70px;
+    min-height: 50px;
 }
 
 .cell.path {
@@ -249,15 +248,15 @@ html {
     opacity: .2;
 }
 
-@media (min-width: 510px) {
+@media (min-width: 300px) {
     .mars {
         max-width: 200px;
-        width: 50px;
+        width: 200px;
     }
 
     .cell {
-        width: 80px;
-        height: 50px;
+        width: 65px;
+        height: 40px;
     }
 
     h1 {
