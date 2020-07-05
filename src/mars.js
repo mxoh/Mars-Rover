@@ -82,10 +82,13 @@ class Mars extends Component {
     run = () => {
         let ops = this.state.ops.slice();
         let {position, path, facing} = this.state;
+
         path = path || {};
         path[position] = facing;
+
         let op = ops.shift();
         let newPosition = {};
+
         if (op === "L") {
             newPosition = this.turnRoverLeft();
         } else if (op === "R") {
@@ -95,6 +98,7 @@ class Mars extends Component {
         } else {
             console.log("Invalid command");
         }
+
         if (newPosition.error) {
             alert('Can not move beyond the boundaries of Mars');
         }
@@ -114,7 +118,6 @@ class Mars extends Component {
 
     };
 
-
     moveRoverForward = () => {
         const {size} = this.props;
         const {position, facing} = this.state;
@@ -122,11 +125,10 @@ class Mars extends Component {
         const pos = position.split('-').map(Number);
         const x = pos[0] + moveVector[0];
         const y = pos[1] + moveVector[1];
-
+        
         if (x < 0 || x >= size || y < 0 || y >= size) {
-            return {error: true}
+            return {error: true};
         }
-
         return {
             position: x + '-' + y
         };
@@ -134,20 +136,16 @@ class Mars extends Component {
 
     turnRoverLeft = () => {
         const {facing} = this.state;
-        return(
-            {
-                facing: LEFT_TURNS_MAP[facing]
-            }
-        );
+        return ({
+            facing: LEFT_TURNS_MAP[facing]
+        });
     };
 
-    turnRoverRigth = () => {
+    turnRoverRight = () => {
         const {facing} = this.state;
-        return(
-            {
-                facing: RIGHT_TURNS_MAP[facing]
-            }
-        );
+        return ({
+            facing: RIGHT_TURNS_MAP[facing]
+        });
     };
 
     render() {
@@ -158,13 +156,13 @@ class Mars extends Component {
 
         for (let i = size - 1; i >= 0; i--) {
             for (let j = 0; j < size; j++) {
-                cells.push(j + '-' + i);
+                cells.push(j + "-" + i);
             }
         }
-
-        return(
-            <ul className='mars'>
+        return (
+            <ul className="mars">
                 {cells.map(cell => {
+
                     let roverElm = null;
                     let roverPath = null;
                     let cellStatus = '';
@@ -174,17 +172,17 @@ class Mars extends Component {
                     }
                     if (this.state.start === cell) {
                         cellStatus += ' start';
-                    } 
+                    }
                     if (this.state.end === cell) {
                         cellStatus += ' end';
                     }
 
                     if (position === cell) {
-                        roverElm = <Rover facing={facing} />
+                        roverElm = <Rover facing={facing}/>;
                     } else {
-                        roverPath = (path[cell] ? <Rover facing={path[cell]} ghost={true} /> : null );
+                        roverPath = (path[cell] ? <Rover facing={path[cell]} ghost={true}/> : null);
                     }
-                    
+
                     return (
                         <li className={`cell ${!!path[cell] ? 'path' : ''} ${cellStatus}`} key={cell}>
                             <label>{cell}</label>
@@ -194,6 +192,7 @@ class Mars extends Component {
                 })}
             </ul>
         );
+        
     }
 }
 
