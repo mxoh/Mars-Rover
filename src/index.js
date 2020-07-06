@@ -60,8 +60,6 @@ export class App extends React.Component {
         let position = this.state.startPosition || '00N';
         position = position.split('').join(' ');
 
-        //<a className={'source'} href={'https://github.com/vraa/marsrover'} title={'Source code for Mars Rover'}>Source</a>
-
         return (
             <div className={'app'}>
                 <h1 className={'app-name'}>Mars Rover</h1>
